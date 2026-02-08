@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    padding: 20px;
+}
+
+/* Main Heading */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Form Container */
+.container {
+    background-color: #ffffff;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Section Headings */
+h3 {
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Inputs & Textarea */
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+/* Buttons */
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* My Events Section */
+#alleventcont {
+    margin-top: 20px;
+    text-align: center;
+    color: #777;
+}
+
+/* Event Card */
+#alleventcont div {
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    position: relative;
+    text-align: left;
+}
+
+/* Delete Button */
+#alleventcont div button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e74c3c;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+#alleventcont div button:hover {
+    background-color: #c0392b;
+}
+
+/* Event Details */
+#alleventcont h4 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+#alleventcont span {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 13px;
+    color: #555;
+}
+
+#alleventcont p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Clear & Sample Buttons */
+#clear-event, #add-sample {
+    background-color: #7f8c8d;
+    margin-right: 10px;
+}
+
+#clear-event:hover, #add-sample:hover {
+    background-color: #636e72;
+}
+    </style>
+</head>
+<body>
+    <h1>Smart Event Dashboard</h1>
+    <div class="container">
+        <h3>Add New Evemt</h3>
+        <br>
+        <form action="">
+            <label for="Event Title">Event Title : </label>
+            <input type="text" name="" id="EventTitle" required>
+            <br>
+
+            <label for="">Event Date : </label>
+            <input type="date" id="eventDate" required>
+            <br>
+
+            <label for="eventCategory">Category : </label>
+            <select name="" id="eventCategory">
+                <option value="">workshop</option>
+                <option value="">conference</option>
+                <option value="">meetup</option>
+                <option value="">webinar</option>
+                <option value="">social</option>
+            </select>
+            <br>
+
+            <label for="">Description : </label>
+            <br>
+            <textarea name="" id="eventDescription"></textarea>
+            <br>
+
+            <button type="submit">Add Event</button>
+            <br>
+            
+        </form>
+
+
+    </div>
+    <br>
+
+    <div>
+        <h3>My Events</h3>
+        <br>
+        <div>
+            <button id="clear-event">Clear All Events</button>
+            <button id="add-sample">Add Sample Events</button>
+        </div>
+        <br>
+
+        <div id="alleventcont">
+            No Event Yet.
+        </div>
+        <script>
+            let f = document.querySelector('form')
+            let e = document.querySelector('#EventTitle')
+            let a = document.querySelector('#eventDate')
+            let b = document.querySelector('#eventCategory')
+            let c = document.querySelector('#eventDescription')
+            let d = document.querySelector('#alleventcont')
+            let g = document.querySelector('#clear-event')
+            
+
+            console.log(e.value)
+            console.log(a.value)
+            console.log(b.value)
+            console.log(c.value)
+            
+
+            function addEventFunction(event){
+                event.preventDefault()
+                let card = document.createElement('div')
+
+                card.innerHTML = `<button>X</button> 
+                                  <h4>${e.value}</h4>
+                                  <span>${a.value}</span>
+                                  <span>${b.value}</span>
+                                  <p>${c.value}</p>`
+                d.innerHTML = "";
+
+                d.append(card);
+
+                f.reset();
+
+
+            }
+            function clearallevent(event){
+                alleventcont.innerHTML = '<h4>No Events Yet </h4>'
+            }
+
+            f.addEventListener('submit' , addEventFunction)
+            g.addEventListener('click' , clearallevent)
+        </script>
+    </div>
+</body>
+</html> 
